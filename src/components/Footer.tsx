@@ -44,6 +44,7 @@ export default function Footer() {
           <button onClick={() => handleNavClick('home')} className="hover:text-brand-accent transition-colors duration-200 cursor-pointer">Home</button>
           <button onClick={() => handleNavClick('services')} className="hover:text-brand-accent transition-colors duration-200 cursor-pointer">Services</button>
           <button onClick={() => handleNavClick('portfolio')} className="hover:text-brand-accent transition-colors duration-200 cursor-pointer">Work</button>
+          <button onClick={() => handleNavClick('faq')} className="hover:text-brand-accent transition-colors duration-200 cursor-pointer">FAQ</button>
           <button onClick={() => handleNavClick('contact')} className="hover:text-brand-accent transition-colors duration-200 cursor-pointer">Contact</button>
         </nav>
 

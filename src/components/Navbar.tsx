@@ -20,7 +20,7 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
         setIsScrolled(false);
       }
 
-      const sections = ['home', 'services', 'portfolio', 'contact'];
+      const sections = ['home', 'services', 'portfolio', 'faq', 'contact'];
       const scrollPosition = window.scrollY + 120; // offset for nav height
 
       for (const section of sections) {
@@ -83,6 +83,7 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
             { id: 'home', label: 'Home' },
             { id: 'services', label: 'Services' },
             { id: 'portfolio', label: 'Work' },
+            { id: 'faq', label: 'FAQ' },
             { id: 'contact', label: 'Contact' }
           ].map((item) => (
             <button
@@ -142,6 +143,7 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
                 { id: 'home', label: 'Home' },
                 { id: 'services', label: 'Services' },
                 { id: 'portfolio', label: 'Work' },
+                { id: 'faq', label: 'FAQ' },
                 { id: 'contact', label: 'Contact' }
               ].map((item) => (
                 <button

@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import Navbar from './components/Navbar';
 import Portfolio from './components/Portfolio';
 import About from './components/About';
+import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import QuoteModal from './components/QuoteModal';
@@ -317,6 +318,9 @@ export default function App() {
 
       {/* 5. About Section */}
       <About />
+
+      {/* FAQ Section */}
+      <Faq />
 
       {/* 6. Contact Section */}
       <Contact showToast={showToast} />

@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Camera, Film, MapPin, Cpu, ArrowRight, Shield } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 
 export default function Portfolio() {
+  const card1Ref = useRef<HTMLDivElement>(null);
+  const card2Ref = useRef<HTMLDivElement>(null);
+
+  // Set up scroll tracking for Card 1
+  const { scrollYProgress: scrollYProgress1 } = useScroll({
+    target: card1Ref,
+    offset: ["start end", "end start"]
+  });
+  const y1 = useTransform(scrollYProgress1, [0, 1], [-25, 25]);
+
+  // Set up scroll tracking for Card 2
+  const { scrollYProgress: scrollYProgress2 } = useScroll({
+    target: card2Ref,
+    offset: ["start end", "end start"]
+  });
+  const y2 = useTransform(scrollYProgress2, [0, 1], [-25, 25]);
+
   return (
     <section id="portfolio" className="py-24 px-4 sm:px-8 bg-brand-paper relative overflow-hidden text-brand-dark">
       {/* Subtle line background layout */}
@@ -29,6 +46,7 @@ export default function Portfolio() {
           
           {/* Card 1: Hajipur Wedding */}
           <div 
+            ref={card1Ref}
             className="group rounded-lg overflow-hidden bg-brand-card border border-brand-border/80 flex flex-col h-full shadow-[0_4px_24px_rgba(33,31,29,0.04)] hover:border-brand-accent/60 transition-all duration-300 glitch-hover-effect"
             id="portfolio-card-wedding"
           >
@@ -43,28 +61,34 @@ export default function Portfolio() {
                 ))}
               </div>
 
-              {/* Pixel Art Traditional Altar Mandap fire SVG */}
-              <svg className="w-40 h-40 text-brand-accent group-hover:scale-102 transition-transform duration-300" viewBox="0 0 16 16" fill="currentColor">
-                {/* Pillars on sides */}
-                <rect x="2" y="3" width="2" height="11" className="text-brand-olive/60" />
-                <rect x="12" y="3" width="2" height="11" className="text-brand-olive/60" />
-                {/* Roof dome arch */}
-                <rect x="3" y="2" width="10" height="2" className="text-brand-olive/80" />
-                <rect x="5" y="1" width="6" height="1" className="text-brand-olive" />
-                {/* Flower garlands hanging */}
-                <rect x="4" y="4" width="1" height="4" className="text-brand-accent" />
-                <rect x="11" y="4" width="1" height="4" className="text-brand-accent" />
-                <rect x="6" y="4" width="1" height="2" className="text-brand-accent/80" />
-                <rect x="9" y="4" width="1" height="2" className="text-brand-accent/80" />
-                {/* Fire Pit Center */}
-                <rect x="6" y="11" width="4" height="2" className="text-brand-dark" />
-                {/* Burning Holy Flame pixels */}
-                <rect x="7" y="9" width="2" height="2" className="text-brand-accent" />
-                <rect x="8" y="8" width="1" height="1" className="text-brand-accent" />
-                <rect x="7" y="10" width="1" height="1" className="text-brand-accent/80" />
-                {/* Base floor bricks */}
-                <rect x="1" y="14" width="14" height="1" className="text-brand-olive/40" />
-              </svg>
+              {/* Parallax-animated container wrapper for the SVG */}
+              <motion.div 
+                style={{ y: y1 }}
+                className="w-full h-full flex items-center justify-center"
+              >
+                {/* Pixel Art Traditional Altar Mandap fire SVG */}
+                <svg className="w-40 h-40 text-brand-accent group-hover:scale-105 transition-transform duration-300" viewBox="0 0 16 16" fill="currentColor">
+                  {/* Pillars on sides */}
+                  <rect x="2" y="3" width="2" height="11" className="text-brand-olive/60" />
+                  <rect x="12" y="3" width="2" height="11" className="text-brand-olive/60" />
+                  {/* Roof dome arch */}
+                  <rect x="3" y="2" width="10" height="2" className="text-brand-olive/80" />
+                  <rect x="5" y="1" width="6" height="1" className="text-brand-olive" />
+                  {/* Flower garlands hanging */}
+                  <rect x="4" y="4" width="1" height="4" className="text-brand-accent" />
+                  <rect x="11" y="4" width="1" height="4" className="text-brand-accent" />
+                  <rect x="6" y="4" width="1" height="2" className="text-brand-accent/80" />
+                  <rect x="9" y="4" width="1" height="2" className="text-brand-accent/80" />
+                  {/* Fire Pit Center */}
+                  <rect x="6" y="11" width="4" height="2" className="text-brand-dark" />
+                  {/* Burning Holy Flame pixels */}
+                  <rect x="7" y="9" width="2" height="2" className="text-brand-accent" />
+                  <rect x="8" y="8" width="1" height="1" className="text-brand-accent" />
+                  <rect x="7" y="10" width="1" height="1" className="text-brand-accent/80" />
+                  {/* Base floor bricks */}
+                  <rect x="1" y="14" width="14" height="1" className="text-brand-olive/40" />
+                </svg>
+              </motion.div>
 
               {/* Exposure tags overlays as small vintage-camera design accents */}
               <div className="absolute top-6 left-4 font-mono text-[8px] text-brand-olive/75 uppercase tracking-widest">
@@ -116,6 +140,7 @@ export default function Portfolio() {
 
           {/* Card 2: Patna Corporate Event */}
           <div 
+            ref={card2Ref}
             className="group rounded-lg overflow-hidden bg-brand-card border border-brand-border/80 flex flex-col h-full shadow-[0_4px_24px_rgba(33,31,29,0.04)] hover:border-brand-accent/60 transition-all duration-300 glitch-hover-effect"
             id="portfolio-card-corporate"
           >
@@ -130,29 +155,35 @@ export default function Portfolio() {
                 ))}
               </div>
 
-              {/* Pixel Art Stage/Speaker podium */}
-              <svg className="w-40 h-40 text-brand-olive group-hover:scale-102 transition-transform duration-300" viewBox="0 0 16 16" fill="currentColor">
-                {/* Large Background Projector Screen */}
-                <rect x="3" y="3" width="10" height="6" className="text-brand-olive/40" />
-                {/* Screen Outline */}
-                <rect x="2" y="2" width="12" height="1" className="text-brand-olive/80" />
-                <rect x="2" y="3" width="1" height="6" className="text-brand-olive/80" />
-                <rect x="13" y="3" width="1" height="6" className="text-brand-olive/80" />
-                <rect x="2" y="9" width="12" height="1" className="text-brand-olive/80" />
-                
-                {/* Graphic bar on screen */}
-                <rect x="4" y="5" width="4" height="2" className="text-brand-accent/60" />
-                <rect x="9" y="6" width="3" height="1" className="text-brand-accent" />
-                
-                {/* Speaker Podium on stage */}
-                <rect x="10" y="10" width="2" height="4" className="text-brand-olive/80" />
-                <rect x="9" y="10" width="4" height="1" className="text-brand-dark" />
-                {/* Microphone pin pixel */}
-                <rect x="10" y="9" width="1" height="1" className="text-brand-accent" />
-                
-                {/* Stage floor line */}
-                <rect x="1" y="14" width="14" height="1" className="text-brand-olive/40" />
-              </svg>
+              {/* Parallax-animated container wrapper for the SVG */}
+              <motion.div 
+                style={{ y: y2 }}
+                className="w-full h-full flex items-center justify-center"
+              >
+                {/* Pixel Art Stage/Speaker podium */}
+                <svg className="w-40 h-40 text-brand-olive group-hover:scale-105 transition-transform duration-300" viewBox="0 0 16 16" fill="currentColor">
+                  {/* Large Background Projector Screen */}
+                  <rect x="3" y="3" width="10" height="6" className="text-brand-olive/40" />
+                  {/* Screen Outline */}
+                  <rect x="2" y="2" width="12" height="1" className="text-brand-olive/80" />
+                  <rect x="2" y="3" width="1" height="6" className="text-brand-olive/80" />
+                  <rect x="13" y="3" width="1" height="6" className="text-brand-olive/80" />
+                  <rect x="2" y="9" width="12" height="1" className="text-brand-olive/80" />
+                  
+                  {/* Graphic bar on screen */}
+                  <rect x="4" y="5" width="4" height="2" className="text-brand-accent/60" />
+                  <rect x="9" y="6" width="3" height="1" className="text-brand-accent" />
+                  
+                  {/* Speaker Podium on stage */}
+                  <rect x="10" y="10" width="2" height="4" className="text-brand-olive/80" />
+                  <rect x="9" y="10" width="4" height="1" className="text-brand-dark" />
+                  {/* Microphone pin pixel */}
+                  <rect x="10" y="9" width="1" height="1" className="text-brand-accent" />
+                  
+                  {/* Stage floor line */}
+                  <rect x="1" y="14" width="14" height="1" className="text-brand-olive/40" />
+                </svg>
+              </motion.div>
 
               {/* Exposure tags overlays as small vintage-camera design accents */}
               <div className="absolute top-6 left-4 font-mono text-[8px] text-brand-olive/75 uppercase tracking-widest">
