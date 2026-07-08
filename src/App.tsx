@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Camera, Film, ArrowRight, Star, Clock, Compass, MapPin, Cpu, RotateCw, ChevronDown, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Analytics } from '@vercel/analytics/react';
 
 // Components
 import Navbar from './components/Navbar';
@@ -337,6 +338,9 @@ export default function App() {
         isVisible={isToastVisible}
         onClose={() => setIsToastVisible(false)}
       />
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
 
     </div>
   );
