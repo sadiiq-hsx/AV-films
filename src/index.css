@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=VT323&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-sans: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-pixel: "VT323", monospace;
+  
+  --color-brand-accent: #C97A3D;
+  --color-brand-accent-hover: #B06930;
+  --color-brand-dark: #211F1D;
+  --color-brand-paper: #EDE6D6;
+  --color-brand-olive: #5C6B4B;
+  --color-brand-card: #F4EFE6;
+  --color-brand-border: #D8CEB6;
+}
+
+@layer utilities {
+  /* Vintage film-grain and light-leak overlays */
+  .film-grain {
+    background-image: radial-gradient(rgba(33, 31, 29, 0.05) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+  
+  .light-leak-1 {
+    background: radial-gradient(circle at 10% 20%, rgba(201, 122, 61, 0.08) 0%, transparent 40%);
+  }
+  
+  .light-leak-2 {
+    background: radial-gradient(circle at 90% 80%, rgba(92, 107, 75, 0.06) 0%, transparent 45%);
+  }
+
+  /* Fine geometric line-patterns */
+  .geometric-border {
+    background-image: repeating-linear-gradient(45deg, var(--color-brand-border), var(--color-brand-border) 1px, transparent 1px, transparent 8px);
+  }
+
+  /* Sprocket hole visual */
+  .sprocket-holes {
+    background-image: repeating-linear-gradient(90deg, var(--color-brand-dark) 0px, var(--color-brand-dark) 12px, transparent 12px, transparent 32px);
+  }
+
+  /* Smooth scroll support */
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand-olive) var(--color-brand-paper);
+    background-color: var(--color-brand-paper);
+    color: var(--color-brand-dark);
+  }
+
+  /* Scanline animation */
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  
+  .crt-lines {
+    background: linear-gradient(
+      rgba(33, 31, 29, 0) 50%, 
+      rgba(33, 31, 29, 0.15) 50%
+    );
+    background-size: 100% 4px;
+  }
+
+  .scanline-anim::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 0%, rgba(0, 0, 0, 0.1) 10%, rgba(18, 16, 16, 0) 100%);
+    opacity: 0.8;
+    z-index: 2;
+    pointer-events: none;
+    animation: scanline 6s linear infinite;
+  }
+
+  /* Glitch effect on hover (for project cards) */
+  .glitch-hover-effect {
+    transition: all 0.2s ease;
+  }
+  .glitch-hover-effect:hover {
+    filter: contrast(1.1) saturate(1.1);
+    transform: translateY(-2px);
+  }
+
+  /* Marquee horizontal infinite ticker scroll */
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-33.33333%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+
+  /* Spin-slow */
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-slow {
+    animation: spinSlow 12s linear infinite;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-olive);
+  border: 2px solid var(--color-brand-paper);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-accent);
+}
+

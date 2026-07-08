@@ -1,0 +1,6 @@
+{
+  "name": "AV Films",
+  "description": "AV Films - Premium Wedding & Event Videography & Photography based in Mahnar Bazar, Bihar, founded by Md Haseeb.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
